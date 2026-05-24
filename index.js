@@ -17,7 +17,8 @@ io.on('connection', (socket) => {
 
   socket.on('join', (room) => {
     socket.join(room);
-    socket.to(room).emit('peer-joined', socket.id);
+    // Notifica a TODOS en la sala que alguien nuevo llegó
+    io.in(room).emit('peer-joined', socket.id);
     console.log(`${socket.id} se unió a sala: ${room}`);
   });
 
